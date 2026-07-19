@@ -2,9 +2,14 @@ const std = @import("std");
 const sample = @import("sample");
 
 pub fn main() !void {
-    // Prints to stderr, ignoring potential errors.
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
-    try sample.bufferedPrint();
+    const utf8_bytes = "Hé";
+    std.debug.print("Bytes: ", .{});
+    for (utf8_bytes) |byte| {
+        std.debug.print("{X} ", .{byte});
+    }
+    // Output: 48 C3 A9
+
+    var stdout_buffer: [1024]u8 = undefined;
 }
 
 test "simple test" {
